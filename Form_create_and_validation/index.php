@@ -11,6 +11,14 @@
 // define variables to empty values  
 $nameErr = $emailErr = $mobilenoErr = $genderErr = $websiteErr = $agreeErr = "";  
 $name = $email = $mobileno = $gender = $website = $agree = "";  
+
+
+function input_data($data) {  
+    $data = trim($data);  
+    $data = stripslashes($data);  
+    $data = htmlspecialchars($data);  
+    return $data;  
+  }
   
 //Input fields validation  
 if ($_SERVER["REQUEST_METHOD"] == "POST") {  
@@ -20,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $nameErr = "Name is required";  
     } else {  
         $name = input_data($_POST["name"]);  
-            // check if name only contains letters and whitespace  
+             
             if (!preg_match("/^[a-zA-Z ]*$/",$name)) {  
                 $nameErr = "Only alphabets and white space are allowed";  
             }  
@@ -31,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $emailErr = "Email is required";  
     } else {  
             $email = input_data($_POST["email"]);  
-            // check that the e-mail address is well-formed  
+             
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {  
                 $emailErr = "Invalid email format";  
             }  
@@ -42,11 +50,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mobilenoErr = "Mobile no is required";  
     } else {  
             $mobileno = input_data($_POST["mobileno"]);  
-            // check if mobile no is well-formed  
+             
             if (!preg_match ("/^[0-9]*$/", $mobileno) ) {  
             $mobilenoErr = "Only numeric value is allowed.";  
             }  
-        //check mobile no length should not be less and greator than 10  
+         
         if (strlen ($mobileno) != 10) {  
             $mobilenoErr = "Mobile no must contain 10 digits.";  
             }  
@@ -57,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $website = "";  
     } else {  
             $website = input_data($_POST["website"]);  
-            // check if URL address syntax is valid  
+          
             if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {  
                 $websiteErr = "Invalid URL";  
             }      
@@ -77,17 +85,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $agree = input_data($_POST["agree"]);  
     }  
 }  
-function input_data($data) {  
-  $data = trim($data);  
-  $data = stripslashes($data);  
-  $data = htmlspecialchars($data);  
-  return $data;  
-}  
+
 ?>  
   
-<h2>Registration Form</h2>  
+<h2>Registration Form</h2>   
 <span class = "error">* required field </span>  
-<br><br>  
+<br>
+<br>  
+
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" >    
     Name:   
     <input type="text" name="name">  
