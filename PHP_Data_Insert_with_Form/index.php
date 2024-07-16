@@ -33,12 +33,13 @@
 
 
 
-    <form action="savedata_core.php" method="POST">
+    <form enctype="multipart/form-data" action="savedata_core.php" method="POST">
 
         <input type="text" name="fname" placeholder="First name">
         <input type="text" name="lname" placeholder="Last name">
         <input type="email" name="email_addr" placeholder="Email">
         <input type="password" name="usr_pwd" placeholder="Password">
+        <input type="file" name="avatar">
         <input type="submit" name="submitButton" value="SAVE DATA">
         
 
@@ -56,6 +57,7 @@
             <td><b>Last Name</b></td>
             <td><b>Email</b></td>
             <td><b>User Password</b></td>
+            <td><b>Profile Picture</b></td>
             <td><b>Action</b></td>
         </tr>
 
@@ -88,7 +90,8 @@
             <td><?php echo  $myData["lname"]; ?></td>
             <td><?php echo  $myData["email_addr"]; ?></td>
             <td><?php echo  $myData["usr_pwd"];?></td>
-            <td><a href="editdata.php?edit_id=<?php echo $myData["id"];?>">Edit</a> |  <a href="deletedata_core.php?id=<?php echo $myData["id"];?>">Delete</a></td>
+            <td><center><img width="60px" src="avatar/<?php echo  $myData["avatar"];?>" alt=""></center></td>
+            <td><a href="editdata.php?edit_id=<?php echo $myData["id"];?>">Edit</a> |  <a onclick="return confirm('Are you sure for Delete');" href="deletedata_core.php?id=<?php echo $myData["id"];?>">Delete</a></td>
         </tr>
 
 
