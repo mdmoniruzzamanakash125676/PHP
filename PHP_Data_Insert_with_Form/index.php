@@ -19,6 +19,17 @@
     
     ?>
 
+        <?php 
+
+            if(isset($_REQUEST["deleted"])){
+                echo "Data has been deleted";
+            }elseif(isset($_REQUEST["edited"])){
+                echo "Data edited";
+            }
+
+        
+        ?>
+
 
 
 
@@ -35,14 +46,11 @@
     <br><br>
 
 
-        <?php 
-        if(isset($_REQUEST["deleted"])){
-            echo "Data has been deleted";
-        }
-        ?>
+        
 
     <table border="1px">
         <tr>
+            <td><b>Serial No</b></td>
             <td><b>DB Id</b></td>
             <td><b>First Name</b></td>
             <td><b>Last Name</b></td>
@@ -59,6 +67,8 @@
     $runDataQuery=mysqli_query($connect,$showDataQuery);
 
     if($runDataQuery==true){
+
+        $snCount=1;
         while($myData =mysqli_fetch_array($runDataQuery)){ ?>
            <!--  echo'<tr>
             <td>'.$myData["fname"].'</td>
@@ -69,13 +79,16 @@
 
         </tr>'; --> 
 
+
+
         <tr>
+            <td><?php echo $snCount;$snCount++ ?></td>
             <td><?php echo $myData["id"]; ?></td>
             <td><?php echo $myData["fname"]; ?></td>
             <td><?php echo  $myData["lname"]; ?></td>
             <td><?php echo  $myData["email_addr"]; ?></td>
             <td><?php echo  $myData["usr_pwd"];?></td>
-            <td><a href="#">Edit</a> |  <a href="deletedata_core.php?id=<?php echo $myData["id"];?>">Delete</a></td>
+            <td><a href="editdata.php?edit_id=<?php echo $myData["id"];?>">Edit</a> |  <a href="deletedata_core.php?id=<?php echo $myData["id"];?>">Delete</a></td>
         </tr>
 
 
