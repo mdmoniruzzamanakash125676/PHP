@@ -6,7 +6,6 @@
     <title>Upload file</title>
 </head>
 <body>
-    <form action="upload_core.php" method="POST"></form>
     
 </body>
 </html>
