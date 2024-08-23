@@ -1,6 +1,7 @@
 <?php
 $dbuser="Moniruzzaman";
 $dbpwd ="1234";
+
 $usernamefromajax=$_REQUEST["uName"];
 $passwordfromajax=$_REQUEST["uPwd"];
 
