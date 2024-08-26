@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +25,13 @@ Route::get('/country', function () {
  
     return view('country');   //middleware
 })->middleware('country');
+
+
+////controller
+Route::get('/home',[HomeController::class,'Home']);
+Route::get('/about',[HomeController::class,'About']);
+Route::get('/contact',[HomeController::class,'Contact']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
