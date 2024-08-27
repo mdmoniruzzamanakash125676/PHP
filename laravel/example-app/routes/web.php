@@ -21,21 +21,35 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
 Route::get('/country', function () {
  
     return view('country');   //middleware
 })->middleware('country');
+
+*/
+
 
 
 ////controller
 Route::get('/home',[HomeController::class,'Home']);
 Route::get('/about',[HomeController::class,'About']);
 Route::get('/contact',[HomeController::class,'Contact']);
+Route::get('/country',[HomeController::class,'Country'])->middleware('country');
 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
+Route::post('/store/contact',[HomeController::class,'store'])->name('store.contact');
+
+
+
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
