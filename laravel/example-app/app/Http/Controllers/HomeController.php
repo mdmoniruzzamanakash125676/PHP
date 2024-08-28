@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 class HomeController extends Controller
 {
     function Home(){
@@ -32,8 +33,8 @@ class HomeController extends Controller
           'password' => 'required|min:6|max:12',
       ]);
 
-       dd($request->all()); 
-   
+      \Log::channel('contactstore')->info('the contact form submited by'.rand(1,20));
+      return redirect()->back();
          
       }
 

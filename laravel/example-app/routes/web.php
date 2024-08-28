@@ -46,8 +46,18 @@ Route::get('/dashboard', function () {
 
 Route::post('/store/contact',[HomeController::class,'store'])->name('store.contact');
 
+Route::get('/test',function(Request $request){
 
+            $logfile=file(storage_path().'/logs/contact.log');
+            $collection=[];
+            foreach($logfile as $line_number=>$line){
+                $collection[]=array('line'=>$line_number , 'content'=>htmlspecialchars($line));  
 
+            }
+
+            dd($collection);
+
+});
 
 
 
