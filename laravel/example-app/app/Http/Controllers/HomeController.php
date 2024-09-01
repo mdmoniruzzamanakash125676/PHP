@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 
 class HomeController extends Controller
@@ -37,6 +38,13 @@ class HomeController extends Controller
       return redirect()->back();
          
       }
+
+      public function details($id){
+       $id = Crypt::decryptString($id);
+       echo $id;
+      
+      }
+
 
 
 

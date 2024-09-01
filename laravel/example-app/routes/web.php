@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\HomeController;
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +49,10 @@ Route::get('/dashboard', function () {
 
 Route::post('/store/contact',[HomeController::class,'store'])->name('store.contact');
 
+Route::get('/user/details/{id}',[HomeController::class,'details'])->name('user.details');
+
+
+
 Route::get('/test',function(Request $request){
 
             $logfile=file(storage_path().'/logs/contact.log');
@@ -58,6 +65,11 @@ Route::get('/test',function(Request $request){
             dd($collection);
 
 });
+
+
+Route::get('/laravel', function () {
+  return view('laravel');
+})->middleware('auth');
 
 
 
